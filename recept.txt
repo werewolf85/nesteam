@@ -36,8 +36,4 @@ git add .
 git commit -m "some text"
 git push
 
-# Модель
-python manage.py makemigrations
-python manage.py migrate
-
 python manage.py runserver
