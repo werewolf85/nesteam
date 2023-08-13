@@ -7,6 +7,7 @@ from .serializers import *
 from rest_framework.generics import ListAPIView, CreateAPIView, ListCreateAPIView
 from rest_framework.viewsets import ModelViewSet
 
+
 def games_list(request):
     game_lst = Game.objects.all()
     serializer = GameSerializer(game_lst, many=True)

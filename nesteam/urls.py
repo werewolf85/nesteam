@@ -17,14 +17,33 @@ Including another URLconf
 from django.contrib import admin
 from games.views import games_list
 # from games.views import studios_list
-from django.urls import path, include
+from django.urls import path, include, re_path
+from rest_framework import permissions
 from games.views import *
 from rest_framework import routers
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Your API",
+        default_version='v1',
+        description="API description",
+        terms_of_service="http://127.0.0.1:8000/",
+        contact=openapi.Contact(email="ixbox85@gmail.com"),
+        license=openapi.License(name="Your License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+
+
 
 
 router = routers.DefaultRouter()
 router.register(r'genre', GenreViewSet)
 router.register(r'apistudio', StudioViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,5 +55,8 @@ urlpatterns = [
     path('studios/', StudiosListAPIView.as_view(), name='games'),
     path('users/', include('usersapp.urls')),
     path('', include(router.urls)),
+    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+
 
 ]
