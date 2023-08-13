@@ -13,6 +13,17 @@ class Game(models.Model):
         on_delete=models.PROTECT,
         null=True,
     )
+    studio = models.ForeignKey(
+        to='Studio',
+        on_delete=models.PROTECT,
+        null=True,
+    )
+    studio = models.ForeignKey(
+        to='Studio',
+        on_delete=models.PROTECT,
+        null=True,
+        blank=False,
+    )
 
     def __srt__(self):
         return self.name
