@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'usersapp',
     'games',
+    'collection',
     'rest_framework_swagger',
     'drf_yasg',
 ]
