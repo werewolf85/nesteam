@@ -37,3 +37,7 @@ git commit -m "some text"
 git push
 
 python manage.py runserver
+
+# Переход на другую базу
+python -Xutf8 manage.py dumpdata --exclude=contenttypes > data.json
+python manage.py loaddata data.json

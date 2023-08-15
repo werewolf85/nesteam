@@ -1,7 +1,7 @@
 from django.test import TestCase
 from rest_framework.test import APITestCase
 from .models import *
-
+from .factories import GameFactory
 # Create your tests here.
 class GameCreateAPITestCase(APITestCase):
     def test_create_game_should_success(self):
@@ -47,3 +47,21 @@ class GameCreateAPITestCase(APITestCase):
         self.assertEqual(response.status_code, 405)
         games_exists = Game.objects.filter(name="Wrong form").exists()
         self.assertFalse(games_exists)
+
+class GamesTest(APITestCase):
+    def setUp(self):
+        self.col_1 = GameFactory()
+        self.col_2 = GameFactory()
+        self.col_3 = GameFactory()
+
+    def test_get_list_of_3_games(self):
+        response = self.client.get('/apigame/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.col_1.name, response.data[0]["name"])
+        self.assertEqual(self.col_2.name, response.data[1]["name"])
+        self.assertEqual(self.col_3.name, response.data[2]["name"])
+
+    def test_get_one_games(self):
+        response = self.client.get(f'/apigame/{self.col_1.pk}/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.col_1.name, response.data["name"])

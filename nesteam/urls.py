@@ -43,6 +43,7 @@ schema_view = get_schema_view(
 router = routers.DefaultRouter()
 router.register(r'genre', GenreViewSet)
 router.register(r'apistudio', StudioViewSet)
+router.register(r'apigame', GameViewSet)
 
 
 urlpatterns = [

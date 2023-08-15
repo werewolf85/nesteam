@@ -7,7 +7,7 @@ class Genre(models.Model):
 
 class Game(models.Model):
     name = models.CharField(max_length=255)
-    year = models.PositiveIntegerField()
+    year = models.PositiveIntegerField(null=True)
     genre = models.ForeignKey(
         to=Genre,
         on_delete=models.PROTECT,
