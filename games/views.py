@@ -37,6 +37,8 @@ class StudioViewSet(ModelViewSet):
 class GamesView(ListCreateAPIView):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
+
+
 class GameViewSet(ModelViewSet):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
