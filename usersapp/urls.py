@@ -8,5 +8,4 @@ urlpatterns = [
     path('detail/<int:pk>/', user_info, name='users-info'),
     path('players/', PlayerListAPIView.as_view(), name='players'),
     # path('user-router/', include(routers.urls)),
-    path('players', PlayerListAPIView.as_view(), name='players')
 ]

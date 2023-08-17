@@ -6,7 +6,7 @@ from .models import *
 from .serializers import *
 from rest_framework.generics import ListAPIView, CreateAPIView, ListCreateAPIView
 from rest_framework.viewsets import ModelViewSet
-
+from .filters import GameFilter
 
 def games_list(request):
     game_lst = Game.objects.all()
@@ -42,7 +42,7 @@ class GamesView(ListCreateAPIView):
 class GameViewSet(ModelViewSet):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
-
+    filterset_class = GameFilter
 class GenreViewSet(ModelViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
