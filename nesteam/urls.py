@@ -52,6 +52,7 @@ urlpatterns = [
     # path('studios/', studios_list, name='studios'),
     # path('create-game/', CreateGameAPIView.as_view(), name='create-game'),
     path('games/', GamesView.as_view(), name='games'),
+    path('games-search/', GamesSearchView.as_view(), name='games-search'),
     path('game-create/', GameCreateAPIView.as_view(), name='games'),
     path('studios/', StudiosListAPIView.as_view(), name='games'),
     path('users/', include('usersapp.urls')),
@@ -59,6 +60,8 @@ urlpatterns = [
     path('', include(router.urls)),
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-
+    path('drf-auth/', include('rest_framework.urls')),
+    path('drf-auth/', include('djoser.urls')),
+    re_path(r'^auth/', include('djoser.urls.authtoken')),
 
 ]
