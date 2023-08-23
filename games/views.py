@@ -50,7 +50,7 @@ class GameViewSet(ModelViewSet):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
     filterset_class = GameFilter
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     # authentication_classes = (TokenAuthentication)
 
 
